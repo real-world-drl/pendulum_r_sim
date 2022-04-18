@@ -41,6 +41,8 @@ setup(
     package_data={
         "pendulum_r_sim": [
             "envs/mujoco/assets/*.xml",
+            "envs/mujoco/assets/*.stl",
+            "envs/mujoco/assets/*.png",
             "py.typed",
         ]
     },

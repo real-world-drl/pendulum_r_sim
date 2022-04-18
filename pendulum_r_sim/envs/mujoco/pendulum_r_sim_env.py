@@ -9,10 +9,11 @@ from gym.envs.mujoco import mujoco_env
 class PendulumRSimEnv(mujoco_env.MujocoEnv, utils.EzPickle):
     def __init__(self):
         utils.EzPickle.__init__(self)
-        xml = 'pendulum_r.xml'
+        xml = pathlib.Path(__file__).parent / 'assets' / 'pendulum_r.xml'
+        xml_full_path = str(xml.resolve().as_posix())
         self.frame_skip = 2
 
-        mujoco_env.MujocoEnv.__init__(self, xml, self.frame_skip)
+        mujoco_env.MujocoEnv.__init__(self, xml_full_path, self.frame_skip)
 
     def step(self, a):
         self.do_simulation(a, self.frame_skip)
