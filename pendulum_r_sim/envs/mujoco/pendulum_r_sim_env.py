@@ -25,7 +25,8 @@ class PendulumRSimEnv(mujoco_env.MujocoEnv, utils.EzPickle):
     def step(self, a):
         # this is to simulate actions arriving late (so old action is still in effect, but the pendulum is moving)
         if self.enable_pre_delay:
-            pre_delay = self.np_random.normal(3, 2, 1)
+            pre_delay = np.random.randint(0, 3)
+            # pre_delay = self.np_random.normal(3, 2, 1)[0]
             if self.last_action:
                 self.do_simulation(self.last_action, pre_delay)
 
@@ -35,7 +36,8 @@ class PendulumRSimEnv(mujoco_env.MujocoEnv, utils.EzPickle):
 
         # this is to simulate observation arriving late (so the new action is still in effect, and the pendulum is moving)
         if self.enable_post_delay:
-            post_delay = self.np_random.normal(6, 2, 1)
+            post_delay = np.random.randint(0, 5)
+            # post_delay = self.np_random.normal(6, 2, 1)[0]
             self.do_simulation(a, post_delay)
 
         done = False
