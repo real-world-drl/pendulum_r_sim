@@ -11,14 +11,32 @@ class PendulumRSimEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         utils.EzPickle.__init__(self)
         xml = pathlib.Path(__file__).parent / 'assets' / 'pendulum_r.xml'
         xml_full_path = str(xml.resolve().as_posix())
-        self.frame_skip = 2
+
+        # the timestamp in the pendulum_r.xml is set to 5ms and
+        # the physical pendulum is optimally moving at 16Hz or with delay of 62.5ms
+        self.frame_skip = 12
+
+        self.last_action = None
+        self.enable_pre_delay = False
+        self.enable_post_delay = False
 
         mujoco_env.MujocoEnv.__init__(self, xml_full_path, self.frame_skip)
 
     def step(self, a):
+        # this is to simulate actions arriving late (so old action is still in effect, but the pendulum is moving)
+        if self.enable_pre_delay:
+            pre_delay = self.np_random.normal(3, 2, 1)
+            if self.last_action:
+                self.do_simulation(self.last_action, pre_delay)
+
         self.do_simulation(a, self.frame_skip)
         ob = self._get_obs()
         r = self.reward(ob)
+
+        # this is to simulate observation arriving late (so the new action is still in effect, and the pendulum is moving)
+        if self.enable_post_delay:
+            post_delay = self.np_random.normal(6, 2, 1)
+            self.do_simulation(a, post_delay)
 
         done = False
         return ob, r, done, {}

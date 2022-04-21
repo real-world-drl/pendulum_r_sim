@@ -13,7 +13,9 @@ class PendulumRSimDiscEnv(PendulumRSimEnv):
         self.fast = 0.2
 
         PendulumRSimEnv.__init__(self)
-        self.frame_skip = 2
+        # the timestamp in the pendulum_r.xml is set to 5ms and
+        # the physical pendulum is optimally moving at 16Hz or with delay of 62.5ms
+        self.frame_skip = 12
 
     def step(self, a):
         if a == 0:
