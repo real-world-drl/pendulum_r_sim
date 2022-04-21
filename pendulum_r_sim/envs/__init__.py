@@ -12,8 +12,15 @@ register(
 )
 
 register(
-    id='PendulumRSimDelays-v0',
-    entry_point='pendulum_r_sim.envs.mujoco:PendulumRSimDelaysEnv',
+    id='PendulumRSimPostDelayed-v0',
+    entry_point='pendulum_r_sim.envs.mujoco:PendulumRSimPostDelayedEnv',
+    max_episode_steps=500,
+    reward_threshold=120.0,
+)
+
+register(
+    id='PendulumRSimPostDelaysInObs-v0',
+    entry_point='pendulum_r_sim.envs.mujoco:PendulumRSimPostDelaysInObs',
     max_episode_steps=500,
     reward_threshold=120.0,
 )
