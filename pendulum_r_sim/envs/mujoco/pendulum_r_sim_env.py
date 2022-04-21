@@ -7,18 +7,18 @@ from gym.envs.mujoco import mujoco_env
 
 
 class PendulumRSimEnv(mujoco_env.MujocoEnv, utils.EzPickle):
-    def __init__(self):
+    def __init__(self, frame_skip=12, enable_pre_delay=False, enable_post_delay=False):
         utils.EzPickle.__init__(self)
         xml = pathlib.Path(__file__).parent / 'assets' / 'pendulum_r.xml'
         xml_full_path = str(xml.resolve().as_posix())
 
         # the timestamp in the pendulum_r.xml is set to 5ms and
         # the physical pendulum is optimally moving at 16Hz or with delay of 62.5ms
-        self.frame_skip = 12
+        self.frame_skip = frame_skip
+        self.enable_pre_delay = enable_pre_delay
+        self.enable_post_delay = enable_post_delay
 
         self.last_action = None
-        self.enable_pre_delay = False
-        self.enable_post_delay = False
 
         mujoco_env.MujocoEnv.__init__(self, xml_full_path, self.frame_skip)
 
