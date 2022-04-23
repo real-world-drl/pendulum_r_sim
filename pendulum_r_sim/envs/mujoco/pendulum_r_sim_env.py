@@ -47,7 +47,7 @@ class PendulumRSimEnv(mujoco_env.MujocoEnv, utils.EzPickle):
             # post_delay = self.np_random.normal(6, 2, 1)[0]
             self.do_simulation(a, post_delay)
             if self.delay_in_observation:
-                ob = np.append(ob, [post_delay / float(self.max_post_delay)])
+                ob = np.append(ob, [post_delay]) # / float(self.max_post_delay)
 
         done = False
         return ob, r, done, {}
