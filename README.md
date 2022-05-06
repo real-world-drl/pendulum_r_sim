@@ -4,6 +4,8 @@ Simulator for a real-world implementation of a swing up pendulum using OpenAI gy
 
 Based on this real-world implementation [https://github.com/rl-sensors/pendulum-r-esp32](https://github.com/rl-sensors/pendulum-r-esp32).
 
+![Sim Env](pendulum_r_sim.gif)
+
 ## Installation
 
     python setup.py install
