@@ -10,6 +10,13 @@ Based on this real-world implementation [https://github.com/rl-sensors/pendulum-
 
     python setup.py install
 
+### Prereqs
+Requires MuJoCo physics engine to be installed.
+
+[https://github.com/openai/mujoco-py](https://github.com/openai/mujoco-py)
+
+Please follow the full installation instruction (not just pip install...).
+
 ## Use
 
     import gym
