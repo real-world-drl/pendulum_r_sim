@@ -15,7 +15,7 @@ Requires MuJoCo physics engine to be installed.
 
 [https://github.com/openai/mujoco-py](https://github.com/openai/mujoco-py)
 
-Please follow the full installation instruction (not just pip install...).
+Please follow the full installation instructions (not just pip install...).
 
 ## Use
 
@@ -31,7 +31,17 @@ Please follow the full installation instruction (not just pip install...).
     # or 
     env = gym.make('PendulumRSimPostDelaysInObs-v0')
 
+### Discrete Action Space
+In the discrete action space there are 5 actions - move left fast, move left slow, stop, move right slow and move right fast.
+The environment is easily solvable by DQN.
+
+### Continuous Action Space
+In the continuous action space the action in the range [-1, 1] determines the arm's position (i.e servo rotation).
+Without delays, this is easily solvable by TD3, DDPG, etc.
+
 ### Delayed Environments
+The delays make the environment more realistic, although, the real-world implementation with limited sensor precision, much more variable delays and overall non-stationarity of the system is even more complex.
+
 The post-delays are implemented by running the action for 6 frameskips, collecting the observations and then running the action for another 0 - 2 frameskips.
 This way the observations are delayed by that random number of frameskips.
 Each frameskip is 5ms.
