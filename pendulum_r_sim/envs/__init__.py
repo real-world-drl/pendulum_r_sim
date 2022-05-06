@@ -12,6 +12,13 @@ register(
 )
 
 register(
+    id='PendulumRSimShortStep-v0',
+    entry_point='pendulum_r_sim.envs.mujoco:PendulumRSimShortStep',
+    max_episode_steps=500,
+    reward_threshold=120.0,
+)
+
+register(
     id='PendulumRSimPostDelayed-v0',
     entry_point='pendulum_r_sim.envs.mujoco:PendulumRSimPostDelayedEnv',
     max_episode_steps=500,
