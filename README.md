@@ -2,6 +2,8 @@
 
 Simulator for a real-world implementation of a swing up pendulum using OpenAI gym interface.
 
+Based on this real-world implementation [https://github.com/rl-sensors/pendulum-r-esp32](https://github.com/rl-sensors/pendulum-r-esp32).
+
 ## Installation
 
     python setup.py install
